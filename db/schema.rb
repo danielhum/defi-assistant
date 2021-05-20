@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_071018) do
     t.string "coin"
     t.string "currency"
     t.float "price"
-    t.integer "condition"
+    t.float "last_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

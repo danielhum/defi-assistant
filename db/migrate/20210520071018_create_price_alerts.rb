@@ -4,7 +4,7 @@ class CreatePriceAlerts < ActiveRecord::Migration[6.1]
       t.string :coin
       t.string :currency
       t.float :price
-      t.integer :condition
+      t.float :last_price
 
       t.timestamps
     end
