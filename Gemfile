@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'dotenv-rails', groups: %i[development test]
 gem 'httparty'
+gem 'rollbar'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
