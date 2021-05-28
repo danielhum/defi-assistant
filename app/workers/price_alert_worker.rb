@@ -6,10 +6,10 @@ class PriceAlertWorker
   PUSHBULLET_ACCOUNT_EMAIL=ENV['PUSHBULLET_ACCOUNT_EMAIL'].freeze
   
   def perform(*args)
-    pairs = PriceAlert.select('DISTINCT ON (coin) coin, currency')
-                      .map{ |p| [p.coin, p.currency] }
-    prices = pairs.inject({}) do |h, pair|
-      h[pair] = PriceAlert.new(coin: pair[0], currency: pair[1]).get_current_price
+    price_alerts = PriceAlert.select(:coin, :currency)
+                             .group(:coin, :currency)
+    prices = price_alerts.inject({}) do |h, p|
+      h[[p.coin, p.currency]] = p.get_current_price
       h
     end
 
