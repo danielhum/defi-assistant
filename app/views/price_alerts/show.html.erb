@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coin:</strong>
+  <%= @price_alert.coin %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @price_alert.currency %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @price_alert.price %>
+</p>
+
+<p>
+  <strong>Last price:</strong>
+  <%= @price_alert.last_price %>
+</p>
+
+<%= link_to 'Edit', edit_price_alert_path(@price_alert) %> |
+<%= link_to 'Back', price_alerts_path %>

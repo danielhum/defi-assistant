@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Price Alerts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Coin</th>
+      <th>Currency</th>
+      <th>Price</th>
+      <th>Last price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @price_alerts.each do |price_alert| %>
+      <tr>
+        <td><%= price_alert.coin %></td>
+        <td><%= price_alert.currency %></td>
+        <td><%= price_alert.price %></td>
+        <td><%= price_alert.last_price %></td>
+        <td><%= link_to 'Show', price_alert %></td>
+        <td><%= link_to 'Edit', edit_price_alert_path(price_alert) %></td>
+        <td><%= link_to 'Destroy', price_alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Price Alert', new_price_alert_path %>

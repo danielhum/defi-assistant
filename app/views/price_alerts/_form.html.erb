@@ -1,0 +1,37 @@
+<%= form_with(model: price_alert) do |form| %>
+  <% if price_alert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(price_alert.errors.count, "error") %> prohibited this price_alert from being saved:</h2>
+
+      <ul>
+        <% price_alert.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :coin %>
+    <%= form.text_field :coin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :currency %>
+    <%= form.text_field :currency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_price %>
+    <%= form.text_field :last_price %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
