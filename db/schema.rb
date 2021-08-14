@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_071018) do
+ActiveRecord::Schema.define(version: 2021_08_14_085318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "momo_listings", force: :cascade do |t|
+    t.string "tx"
+    t.string "token_id"
+    t.bigint "start_price"
+    t.bigint "now_price"
+    t.bigint "end_price"
+    t.integer "specialty"
+    t.integer "quality"
+    t.integer "lv_hashrate"
+    t.integer "level"
+    t.integer "index"
+    t.string "raw_id"
+    t.integer "hashrate"
+    t.integer "duration_days"
+    t.integer "category"
+    t.string "auctor"
+    t.integer "uptime"
+    t.jsonb "payload"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["raw_id"], name: "index_momo_listings_on_raw_id", unique: true
+  end
 
   create_table "price_alerts", force: :cascade do |t|
     t.string "coin"

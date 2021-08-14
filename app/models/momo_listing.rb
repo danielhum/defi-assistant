@@ -1,0 +1,2 @@
+class MomoListing < ApplicationRecord
+end

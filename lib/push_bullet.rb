@@ -7,7 +7,11 @@ class PushBullet
           'Content-Type' => 'application/json'
   # debug_output $stdout
 
-  def self.create_push(email: , title: 'DeFi Assistant', body: )
+  PUSHBULLET_ACCOUNT_EMAIL=ENV['PUSHBULLET_ACCOUNT_EMAIL'].freeze
+
+  def self.create_push(
+    email: PUSHBULLET_ACCOUNT_EMAIL, title: 'DeFi Assistant', body: 
+  )
     post("/v2/pushes",
       body: {
         email: email,
