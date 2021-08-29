@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_14_085318) do
+ActiveRecord::Schema.define(version: 2021_08_29_063953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "momo_box_sale_txes", force: :cascade do |t|
+    t.integer "amount"
+    t.datetime "crtime"
+    t.string "order_id"
+    t.bigint "price"
+    t.string "tx"
+    t.jsonb "payload"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tx"], name: "index_momo_box_sale_txes_on_tx", unique: true
+  end
 
   create_table "momo_listings", force: :cascade do |t|
     t.string "tx"

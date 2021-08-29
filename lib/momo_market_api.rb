@@ -20,4 +20,8 @@ class MomoMarketApi
     get("/auction/search/BNB?page=#{page}&limit=15&"\
       "category=&vType=4&sort=price&pType=")
   end
+
+  def self.logs_box_tx(page: 1)
+    get("/gem_auction/logs?&page=#{page}&limit=50&filter=2")
+  end
 end

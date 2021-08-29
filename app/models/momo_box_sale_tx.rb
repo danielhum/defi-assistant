@@ -1,0 +1,2 @@
+class MomoBoxSaleTx < ApplicationRecord
+end
