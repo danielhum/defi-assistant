@@ -18,7 +18,7 @@ class MomoMarketApi
   def self.auction_search(page: 1)
     # call full URL to match browser request
     get("/auction/search/BNB?page=#{page}&limit=15&"\
-      "category=&vType=4&sort=price&pType=")
+      "category=&vType=4&sort=-time&pType=")
   end
 
   def self.logs_box_tx(page: 1)
