@@ -6,7 +6,7 @@ require_dependency "momo_market_api"
 class MomoListingJob < ApplicationJob
   queue_as :default
 
-  LOW_PRICE_THRESHOLD = 750
+  LOW_PRICE_THRESHOLD = 4200
   NUM_PAGES = 5
   LAST_PUSH_KEY = "momo_listing_job:last_push".freeze
   PUSH_COOLDOWN = 3600 # in seconds
