@@ -29,9 +29,15 @@ class MomoBoxSaleTxJob < ApplicationJob
 
     now = Time.now
     insert_data = list.reverse.map do |listing|
-      listing.select! { |k, _| attrs.include?(k.underscore) }
-      data = listing.each_with_object({}) { |(k, v), h| h[k.underscore] = v }
+      listing_data = listing.select { |k, _| attrs.include?(k.underscore) }
+      data = listing_data.each_with_object({}) do |(k, v), h|
+        h[k.underscore] = v
+      end
+      amount = listing["amounts"][0].to_i
+      price = listing["price"].to_f / (10**9)
       data.merge({
+        "amount" => amount,
+        "unit_price" => price/amount,
         "crtime" => Time.at(listing["crtime"]),
         "payload" => listing,
         "created_at" => now,
@@ -39,7 +45,7 @@ class MomoBoxSaleTxJob < ApplicationJob
       })
     end
     prices = MomoBoxSaleTx
-      .insert_all(insert_data, returning: %i[price]).rows.flatten
+      .insert_all(insert_data, returning: %i[unit_price]).rows.flatten
 
     if prices.count > 0
       lowest_price = prices.min
@@ -56,7 +62,7 @@ class MomoBoxSaleTxJob < ApplicationJob
   end
 
   def low_price?(price)
-    price/(10**9) <= LOW_PRICE_THRESHOLD
+    price <= LOW_PRICE_THRESHOLD
   end
 
   def pending_push_cooldown?

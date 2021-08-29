@@ -24,8 +24,10 @@ class MomoListingJob < ApplicationJob
 
     now = Time.now
     insert_data = list.map do |listing|
-      listing.select! { |k, _| attrs.include?(k.underscore) }
-      data = listing.each_with_object({}) { |(k, v), h| h[k.underscore] = v }
+      listing_data = listing.select { |k, _| attrs.include?(k.underscore) }
+      data = listing_data.each_with_object({}) do |(k, v), h|
+        h[k.underscore] = v
+      end
       data.merge({
         "raw_id" => listing["id"],
         "payload" => listing,
