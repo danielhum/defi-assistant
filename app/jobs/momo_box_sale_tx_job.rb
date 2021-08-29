@@ -71,7 +71,7 @@ class MomoBoxSaleTxJob < ApplicationJob
   end
 
   def push_notification(message)
-    REDIS.set LAST_PUSH_KEY, now.to_i
+    REDIS.set LAST_PUSH_KEY, Time.now.to_i
     PushBullet.create_push(body: message)
   end
 end
