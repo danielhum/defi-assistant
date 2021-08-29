@@ -61,7 +61,7 @@ class MomoBoxSaleTxJob < ApplicationJob
 
   def pending_push_cooldown?
     last_push = Integer(REDIS.get(LAST_PUSH_KEY) || 0)
-    (now.to_i - last_push) < PUSH_COOLDOWN
+    (Time.now.to_i - last_push) < PUSH_COOLDOWN
   end
 
   def push_notification(message)

@@ -5,3 +5,6 @@
   momo_listing:
     cron: '*/5 * * * *'   # every 5 min
     class: MomoListingJob
+  momo_box_sale_tx:
+    cron: '*/5 * * * *'   # every 5 min
+    class: MomoBoxSaleTxJob
