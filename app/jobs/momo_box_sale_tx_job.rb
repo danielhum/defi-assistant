@@ -44,6 +44,7 @@ class MomoBoxSaleTxJob < ApplicationJob
         "updated_at" => now
       })
     end
+    MomoBoxSaleTx.order(id: :desc).limit(MomoBoxSaleTx.count - 5000).delete_all
     prices = MomoBoxSaleTx
       .insert_all(insert_data, returning: %i[unit_price]).rows.flatten
 
