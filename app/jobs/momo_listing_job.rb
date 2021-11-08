@@ -63,7 +63,7 @@ class MomoListingJob < ApplicationJob
     end
     low_price = prices.min
 
-    if low_price?(low_price) && should_push?(PUSH_COOLDOWN)
+    if low_price && low_price?(low_price) && should_push?(PUSH_COOLDOWN)
       push("Momo Listing <= #{LOW_PRICE_THRESHOLD}: $#{low_price}")
     end
   end
