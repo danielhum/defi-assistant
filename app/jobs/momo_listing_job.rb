@@ -42,6 +42,10 @@ class MomoListingJob < ApplicationJob
         "updated_at" => now
       })
     end
+    limit = MomoListing.count - 5000
+    if limit.positive?
+      MomoListing.order(id: :asc).limit(limit).delete_all
+    end
     listings = MomoListing
       .insert_all(insert_data, returning: %w[now_price hashrate]).rows
     return if listings.empty?
