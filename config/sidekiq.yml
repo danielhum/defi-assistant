@@ -10,4 +10,4 @@
   #   class: MomoBoxSaleTxJob
   heroku_db_maintenance:
     cron: '0 0 * * *'   # every day at midnight
-    class: MomoBoxSaleTxJob
+    class: HerokuDbMaintenance
