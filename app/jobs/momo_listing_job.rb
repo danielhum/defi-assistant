@@ -8,6 +8,7 @@ class MomoListingJob < ApplicationJob
 
   LOW_PRICE_THRESHOLD = (ENV['MOMO_LOW_PRICE'] || 3000).to_i
   VERY_LOW_PRICE_THRESHOLD = (ENV['MOMO_VERY_LOW_PRICE'] || 1000).to_i
+  MIN_HASHRATE=ENV.fetch('MOMO_MIN_HASHRATE', 155).to_i
   MAX_PAGES = 10
   LAST_PUSH_KEY = "momo_listing_job:last_push".freeze
   PUSH_COOLDOWN = 3600 # in seconds
@@ -59,7 +60,7 @@ class MomoListingJob < ApplicationJob
       push("Very cheap Momo: $#{cheap_price}")
     end
 
-    good_listings = listings.select { |l| l[1] > 30 } # hashrate > 30
+    good_listings = listings.select { |l| l[1] >= MIN_HASHRATE }
     prices, hashrates =
       good_listings.each_with_object([[], []]) do |(price, hashrate), a|
       a[0] << price_to_dollars(price)
